@@ -68,7 +68,7 @@ class ColorStrip:
 
 
     def set_color(self, color, wait_ms=0):
-        """Wipe color across display a pixel at a time."""
+        """Wipe colour down each side in parallel then off again."""
         if self._current_color == color:
             # No change
             return
