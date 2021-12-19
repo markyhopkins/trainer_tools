@@ -1,6 +1,11 @@
 Trainer Tools
 ===
 
+Forked to protect j Ludwigs effort.
+
+https://github.com/jludwig75/trainer_tools 
+
+
 This module provides support for reading input from trainer and exercise sensors
 and using that input to control other devices such as fans and LED strips. This
 module is intended to be run from a Raspberry Pi with a USB ANT+ adapter and its
