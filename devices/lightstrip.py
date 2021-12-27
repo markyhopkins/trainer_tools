@@ -38,7 +38,7 @@ class RgbColor:
 
 # TODO: Not sure what should be exposed through class contructor/setters
 LED_DMA        = 10      # DMA channel to use for generating signal (try 10)
-LED_BRIGHTNESS = 255     # Set to 0 for darkest and 255 for brightest
+LED_BRIGHTNESS = 125    # Set to 0 for darkest and 255 for brightest
 LED_INVERT     = False   # True to invert the signal (when using NPN transistor level shift)
 LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
 
@@ -53,33 +53,32 @@ class ColorStrip:
         # Intialize the library (must be called once before other functions).
         self._strip.begin()
 
-    # Define functions which animate LEDs in various ways.
-#    def set_color(self, color, wait_ms=0):
-#        """Wipe color across display a pixel at a time."""
-#        if self._current_color == color:
-#            # No change
-#            return
-#        logging.info('Changing LED strip color to (%u,%u,%u)' % (color.red, color.green, color.blue))
-#        for i in range(self._strip.numPixels()):
-#            self._strip.setPixelColor(i, Color(color.green, color.red, color.blue))
-#            self._strip.show()
-#            # time.sleep(wait_ms/1000.0)
-#        self._current_color = color
+#     # Define functions which animate LEDs in various ways.
+#     def set_color(self, color, wait_ms=0):
+#         """Wipe color across display a pixel at a time."""
+#         if self._current_color == color:
+#             # No change
+#             return
+#         logging.info('Changing LED strip color to (%u,%u,%u)' % (color.red, color.green, color.blue))
+#         for i in range(0, self._strip.numPixels()/2, 2):
+#             self._strip.setPixelColor(i, Color(color.green, color.red, color.blue))
+#             self._strip.setPixelColor(self._strip.numPixels()-1-i, Color(color.green, color.red, color.blue))
+#             self._strip.show()
+#             # time.sleep(wait_ms/1000.0)
+#         self._current_color = color
 
 
     def set_color(self, color, wait_ms=0):
-        """Wipe colour down each side in parallel then off again."""
-        if self._current_color == color:
-            # No change
-            return
-        logging.info('Changing LED strip color to (%u,%u,%u)' % (color.red, color.green, color.blue))
-        for i in range(self._strip.numPixels()):
-            if i<(self._strip.numPixels()/2):
+            """Wipe color across display a pixel at a time."""
+#             half_strip = self._strip.numPixels()/2
+            if self._current_color == color:
+                # No change
+                return
+            logging.info('Changing LED strip color to (%u,%u,%u)' % (color.red, color.green, color.blue))
+            for i in range(0, 150, 2):
                 self._strip.setPixelColor(i, Color(color.green, color.red, color.blue))
-                self.strip.setPixelColor(self._strip.numPixels()-1-i, Color(color.green, color.red, color.blue))
-            else
-                self._strip.setPixelColor(i, Color(0, 0, 0)
-                self.strip.setPixelColor(self._strip.numPixels()-1-i, Color(0, 0, 0)
-            self._strip.show()
-            # time.sleep(wait_ms/1000.0)
-        self._current_color = color
+                self._strip.setPixelColor(self._strip.numPixels()-1-i, Color(color.green, color.red, color.blue))
+                self._strip.show()
+                # time.sleep(wait_ms/1000.0)
+            self._current_color = color
+
